@@ -1,9 +1,12 @@
 # Import python packages
 import streamlit as st
+from snowflake.snowpark import Session
 from snowflake.snowpark.functions import col
 
-cnx= st.connection("snowflake")
-session=cnx.session()
+# Conexión a Snowflake
+connection_parameters = st.secrets["snowflake"]
+session = Session.builder.configs(connection_parameters).create()
+
 # Write directly to the app
 st.title(f" :cup_with_straw: Customize your Smoothie! :cup_with_straw:")
 st.write(
